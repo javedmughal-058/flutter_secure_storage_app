@@ -4,7 +4,7 @@ class ButtonWidget extends StatelessWidget {
   final String text;
   final VoidCallback onClicked;
 
-  const ButtonWidget({
+  const ButtonWidget({super.key,
     required this.text,
     required this.onClicked,
   });
@@ -19,10 +19,7 @@ class ButtonWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(25),
           ),
         ),
-        child: Text(
-          text,
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        ),
         onPressed: onClicked,
+        child: Text(text, style: TextStyle(fontSize: 20,color: Theme.of(context).scaffoldBackgroundColor, fontWeight: FontWeight.bold)),
       );
 }

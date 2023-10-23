@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'page/user_page.dart';
 
 Future main() async {
@@ -13,16 +12,29 @@ Future main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   static const String title = 'Secure Storage';
-
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: title,
+        title: MyApp.title,
         theme: ThemeData(
+          useMaterial3: true,
           colorScheme: const ColorScheme.dark(),
           scaffoldBackgroundColor: Colors.teal.shade600,
           cardColor: Colors.white38,

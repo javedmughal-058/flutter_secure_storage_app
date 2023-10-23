@@ -30,14 +30,14 @@ class PetsButtonsWidget extends StatelessWidget {
           fillColor: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(10),
           renderBorder: false,
-          children: allInterest.map(buildPet).toList(),
+          children: allInterest.map(buildInterest).toList(),
           onPressed: (index) => onSelectedPet(allInterest[index]),
         ),
       ),
     );
   }
 
-  Widget buildPet(String text) => Container(
+  Widget buildInterest(String text) => Container(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Text(text),
       );

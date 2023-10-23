@@ -18,12 +18,11 @@ class _UserPageState extends State<UserPage> {
   final controllerName = TextEditingController();
   DateTime? birthday;
   List<String> interests = [];
-
   @override
   void initState() {
     super.initState();
-
     init();
+
   }
 
   Future init() async {
@@ -38,25 +37,29 @@ class _UserPageState extends State<UserPage> {
     });
   }
 
+
   @override
-  Widget build(BuildContext context) => Scaffold(
-        body: SafeArea(
-          child: ListView(
-            padding: const EdgeInsets.all(16),
-            children: [
-              const TitleWidget(icon: Icons.lock, text: 'Secure\nStorage'),
-              const SizedBox(height: 32),
-              buildName(),
-              const SizedBox(height: 12),
-              buildBirthday(),
-              const SizedBox(height: 12),
-              buildPets(),
-              const SizedBox(height: 32),
-              buildButton(),
-            ],
-          ),
+  Widget build(BuildContext context){
+    final size = MediaQuery.sizeOf(context);
+    return Scaffold(
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.all(16),
+          children: [
+            const TitleWidget(icon: Icons.lock, text: 'Secure\nStorage'),
+            SizedBox(height: size.height* 0.01),
+            buildName(),
+            SizedBox(height: size.height* 0.01),
+            buildBirthday(),
+            SizedBox(height: size.height* 0.01),
+            buildPets(),
+            SizedBox(height: size.height* 0.02),
+            buildButton(),
+          ],
         ),
-      );
+      ),
+    );
+  }
 
   Widget buildName() => buildTitle(
         title: 'Name',
@@ -124,4 +127,6 @@ class _UserPageState extends State<UserPage> {
           child,
         ],
       );
+
+
 }
