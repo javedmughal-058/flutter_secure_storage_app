@@ -2,18 +2,18 @@ import 'dart:convert';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class UserSecureStorage {
+class SecureStorage {
   static const _storage = FlutterSecureStorage();
 
-  static const _keyUsername = 'username';
+  static const _keyName = 'name';
   static const _keyPets = 'pets';
   static const _keyBirthday = 'birthday';
 
-  static Future setUsername(String username) async =>
-      await _storage.write(key: _keyUsername, value: username);
+  static Future setName(String username) async =>
+      await _storage.write(key: _keyName, value: username);
 
-  static Future<String?> getUsername() async =>
-      await _storage.read(key: _keyUsername);
+  static Future<String?> getName() async =>
+      await _storage.read(key: _keyName);
 
   static Future setPets(List<String> pets) async {
     final value = json.encode(pets);

@@ -17,7 +17,7 @@ class _UserPageState extends State<UserPage> {
   final formKey = GlobalKey<FormState>();
   final controllerName = TextEditingController();
   DateTime? birthday;
-  List<String> pets = [];
+  List<String> interests = [];
 
   @override
   void initState() {
@@ -27,14 +27,14 @@ class _UserPageState extends State<UserPage> {
   }
 
   Future init() async {
-    final name = await UserSecureStorage.getUsername() ?? '';
-    final birthday = await UserSecureStorage.getBirthday();
-    final pets = await UserSecureStorage.getPets() ?? [];
+    final name = await SecureStorage.getName() ?? '';
+    final birthday = await SecureStorage.getBirthday();
+    final pets = await SecureStorage.getPets() ?? [];
 
     setState(() {
       controllerName.text = name;
       this.birthday = birthday;
-      this.pets = pets;
+      interests = pets;
     });
   }
 
@@ -87,20 +87,20 @@ class _UserPageState extends State<UserPage> {
       );
 
   Widget buildPets() => buildTitle(
-        title: 'Pets',
+        title: 'Developer',
         child: PetsButtonsWidget(
-          pets: pets,
-          onSelectedPet: (pet) => setState(() => pets.contains(pet) ? pets.remove(pet) : pets.add(pet)),
+          interests: interests,
+          onSelectedPet: (pet) => setState(() => interests.contains(pet) ? interests.remove(pet) : interests.add(pet)),
         ),
       );
 
   Widget buildButton() => ButtonWidget(
       text: 'Save',
       onClicked: () async {
-        await UserSecureStorage.setUsername(controllerName.text);
-        await UserSecureStorage.setPets(pets);
+        await SecureStorage.setName(controllerName.text);
+        await SecureStorage.setPets(interests);
         if (birthday != null) {
-          await UserSecureStorage.setBirthday(birthday!);
+          await SecureStorage.setBirthday(birthday!);
         }
         Future.delayed(const Duration(milliseconds: 500),(){
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
